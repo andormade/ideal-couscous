@@ -1,0 +1,23 @@
+{
+  "name": "ideal-couscous",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "download-frames": "lightroom-gallery-downloader ./frames 7462f30ec2fb4db8b41026a8dd7345ba"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andormade/ideal-couscous.git"
+  },
+  "author": "Andor Polgar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andormade/ideal-couscous/issues"
+  },
+  "homepage": "https://github.com/andormade/ideal-couscous#readme",
+  "devDependencies": {
+    "lightroom-gallery-downloader": "^1.0.0"
+  }
+}
