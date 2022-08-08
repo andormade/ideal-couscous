@@ -91,12 +91,11 @@ const scene = [
 async function createSymlinks(scene) {
     await fs.remove('./symlinks');
     for (let i = 0; i < scene.length; i++) {
-        await fs.ensureSymlink(`./frames/${scene[i]}.jpg`, `./symlinks/${i}.jpg`);
+        await fs.ensureSymlink(`./originals/${scene[i]}.jpg`, `./symlinks/${i}.jpg`);
     }
 }
 
 (async () => {
-
     await createSymlinks(scene);
 
     exec("ffmpeg " + getFFMPEGConfig(), (error, stdout, stderr) => {
