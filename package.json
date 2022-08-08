@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "download-frames": "lightroom-gallery-downloader ./frames 7462f30ec2fb4db8b41026a8dd7345ba",
-    "transform-all": "node transform.js --all"
+    "transform-all": "node ./src/transform.js --all",
+    "render": "node ./src/render.js"
   },
   "repository": {
     "type": "git",

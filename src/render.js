@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
 
 function getFFMPEGConfig(fileName = 'output') {
     return [
@@ -10,7 +10,7 @@ function getFFMPEGConfig(fileName = 'output') {
         '-i ./symlinks/%d.jpg',
         '-c:v libx264',
         '-pix_fmt yuv420p',
-        `${fileName}.mp4`
+        `./output/${fileName}.mp4`
     ].join(' ');
 };
 
@@ -89,25 +89,14 @@ const scene = [
 ];
 
 async function createSymlinks(scene) {
+    console.log("Generating symlinks...");
     await fs.remove('./symlinks');
     for (let i = 0; i < scene.length; i++) {
-        await fs.ensureSymlink(`./originals/${scene[i]}.jpg`, `./symlinks/${i}.jpg`);
+        await fs.ensureSymlink(`./frames/${scene[i]}.jpg`, `./symlinks/${i}.jpg`);
     }
 }
 
 (async () => {
     await createSymlinks(scene);
-
-    exec("ffmpeg " + getFFMPEGConfig(), (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
-
+    execSync("ffmpeg " + getFFMPEGConfig(), { stdio: 'inherit'});
 })();
